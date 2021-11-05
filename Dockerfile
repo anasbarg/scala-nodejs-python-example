@@ -21,7 +21,7 @@
 FROM metacall/core:runtime AS builder
 
 # Install dependencies
-RUN apt-get update \
+RUN apt-get --allow-releaseinfo-change update \
 	&& mkdir -p /usr/share/man/man1 \
 	&& apt-get install -y --no-install-recommends \
 		openjdk-11-jre-headless \
@@ -51,7 +51,7 @@ RUN GITHUB_TOKEN=${GITHUB_TOKEN} sbt clean assembly
 FROM metacall/core:runtime AS runtime
 
 # Install dependencies
-RUN apt-get update \
+RUN apt-get --allow-releaseinfo-change update \
 	&& mkdir -p /usr/share/man/man1 \
 	&& apt-get install -y --no-install-recommends \
 		openjdk-11-jre-headless \
